@@ -1,0 +1,8 @@
+ 
+<div class="container-fluid w-100 m-0 p-0" style="height: 520px; position:relative; background-color: transparent;">
+    <div class="d-flex justify-content-around align-items-center w-100"  style="height: 80px;position:absolute; bottom: 0;">
+            <a *ngFor="let item of btnInfo" routerLink="/{{item.link}}" >
+                <button class="btn btn-{{item.color}} d-flex align-items-center">{{item.text}}</button>
+            </a>
+    </div>
+</div>

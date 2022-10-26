@@ -1,0 +1,264 @@
+<div
+  class="container-fluid m-0 mb-5 w-100"
+  style="position: relative; height: 505px"
+>
+  <div class="mt-3 text-center bg-white" style="position:sticky;top:0px; z-index: 11;padding: 10px 0; ">
+    <span>Add Contacts</span>
+  </div>
+  <div>
+    <form #form="ngForm" (ngSubmit)="submit()">
+      <div class="mt-3">
+        <select
+          class="input-select"
+          style="border: none; outline: none"
+          name="sel"
+          id="sel"
+          (change)="choose($event.target)"
+          [(ngModel)] ="addContactList.saveTo"
+        >
+          <option class="input-select-text" value="phone">Phone</option>
+          <option class="input-select-text" value="sim">SIM</option>
+        </select>
+      </div>
+      <div class="mt-3">
+        <label for="name">{{ drop ? "" : "Name" }}</label>
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="{{ drop ? 'Name' : 'First Name' }}"
+            class="clear form-control"
+            name="fname"
+            id="fname"
+            [maxLength]="val"
+            [(ngModel)] ="addContactList.firstName"
+            required
+          />
+          <span
+            class="input-group-text bg-transparent {{
+              choice == 'sim' ? 'd-none' : 'd-block'
+            }}"
+            (click)="dropdown()"
+            >{{ drop ? "+" : "-" }}</span
+          >
+        </div>
+        <div class="{{ drop ? 'd-none' : 'd-block' }} {{choice == 'sim' ? 'd-none' : 'd-block'}}">
+          <div class="mt-2">
+            <input
+              type="text"
+              placeholder="Middle Name"
+              class="form-control clear"
+              name="mname"
+              id="mname"
+              [(ngModel)] ="addContactList.middleName"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="text"
+              placeholder="Last Name"
+              class="form-control clear"
+              name="lname"
+              id="lname"
+              [(ngModel)] ="addContactList.lastName"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="{{ dropA ? '' : 'mt-3' }}">
+        <label for="phone">{{ dropA ? "" : "Phone number" }}</label>
+        <div class="input-group">
+          <input
+            type="number"
+            placeholder="{{ dropA ? 'Phone' : 'Mobile' }}"
+            class="form-control clear"
+            name="mobile"
+            id="mobile"
+            [(ngModel)] ="addContactList.mobileNumber"
+            maxlength="11"
+            required
+          />
+          <span
+            class="input-group-text bg-transparent {{
+              choice == 'sim' ? 'd-none' : 'd-block'
+            }}"
+            (click)="dropdownA()"
+            >{{ dropA ? "+" : "-" }}</span
+          >
+        </div>
+        <div class="{{ dropA ? 'd-none' : 'd-block' }} {{choice == 'sim' ? 'd-none' : 'd-block'}}">
+          <div class="mt-2">
+            <input
+              type="number"
+              placeholder="Home"
+              class="form-control clear"
+              name="home"
+              id="home"
+              maxlength="11"
+              [(ngModel)] ="addContactList.homeNumber"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="number"
+              placeholder="Work"
+              class="form-control clear"
+              name="work"
+              id="work"
+              maxlength="11"
+              [(ngModel)] ="addContactList.workNumber"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="number"
+              placeholder="Other"
+              class="form-control clear"
+              name="other"
+              id="other"
+              maxlength="11"
+              [(ngModel)] ="addContactList.otherNumber"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="{{ dropB ? '' : 'mt-3' }} {{
+          choice == 'sim' ? 'd-none' : 'd-block'
+        }}"
+      >
+        <label for="">{{ dropB ? "" : "Email address" }}</label>
+        <div class="input-group">
+          <input
+            type="email"
+            placeholder="{{ dropB ? 'Email' : 'Home' }}"
+            class="form-control clear"
+            name="homemail"
+            id="homemail"
+            [(ngModel)] ="addContactList.homeEmail"
+          />
+          <span class="input-group-text bg-transparent" (click)="dropdownB()">{{
+            dropB ? "+" : "-"
+          }}</span>
+        </div>
+        <div class="{{ dropB ? 'd-none' : 'd-block' }}">
+          <div class="mt-2">
+            <input
+              type="email"
+              placeholder="Work"
+              class="form-control clear"
+              name="workmail"
+              id="workmail"
+              [(ngModel)] ="addContactList.workEmail"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="email"
+              placeholder="Other"
+              class="form-control clear"
+              name="othermail"
+              id="othermail"
+              [(ngModel)] ="addContactList.otherEmail"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="{{ dropC ? '' : 'mt-3' }} {{
+          choice == 'sim' ? 'd-none' : 'd-block'
+        }}"
+      >
+        <label for="">{{ dropC ? "" : "Messenger accounts" }}</label>
+        <div class="input-group">
+          <input
+            type="number"
+            placeholder="{{ dropC ? 'Messenger accounts' : 'Whatsapp' }}"
+            class="form-control clear"
+            name="whatsapp"
+            id="whatsapp"
+            [(ngModel)] ="addContactList.whatsapp"
+          />
+          <span class="input-group-text bg-transparent" (click)="dropdownC()">{{
+            dropC ? "+" : "-"
+          }}</span>
+        </div>
+        <div class="{{ dropC ? 'd-none' : 'd-block' }}">
+          <div class="mt-2">
+            <input
+              type="text"
+              placeholder="Facebook"
+              class="form-control clear"
+              name="facebook"
+              id="facebook"
+              [(ngModel)] ="addContactList.facebook"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="text"
+              placeholder="Twitter"
+              class="form-control clear"
+              name="twitter"
+              id="twitter"
+              [(ngModel)] ="addContactList.twitter"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="text"
+              placeholder="Instagram"
+              class="form-control clear"
+              name="instagram"
+              id="instagram"
+              [(ngModel)] ="addContactList.instagram"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="text"
+              placeholder="Linkedin"
+              class="form-control clear"
+              name="linkedin"
+              id="linkedin"
+              [(ngModel)] ="addContactList.linkedin"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="text"
+              placeholder="Ticktock"
+              class="form-control clear"
+              name="ticktok"
+              id="ticktok"
+              [(ngModel)] ="addContactList.ticktok"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              type="text"
+              placeholder="Others"
+              class="form-control clear"
+              name="others"
+              id="otherMedia"
+              [(ngModel)] ="addContactList.otherMedia"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-100 mt-5 bg-white"
+        style="position: sticky; bottom: 0; left: 0; z-index: 11"
+      >
+        <button
+          type="submit"
+          class="btn btn-outline-primary btn-lg btn-block w-100"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="container-fluid" style="position: relative;height: 510px;">
+  <div class="d-{{ val }} text-center pt-2">
+    <span class="fw-bold fs-5">Contacts</span>
+    <a routerLink="/contacts/addcontact">
+      <button class="fs-5 fw-bold float-end text-dark bg-transparent me-2">
+        +
+      </button></a
+    >
+  </div>
+  <div class="" style="width: 100%">
+    <div
+      class="search pt-2 d-flex justify-content-center"
+      style="position: sticky; top: 0; z-index: 11"
+    >
+      <form (keyup)="search($event)" class="w-100">
+        <div class="">
+          <input
+            class="clear form-control bg-light rounded-4"
+            type="text"
+            placeholder="Search"
+            (focus)="changeVal()"
+          />
+        </div>
+      </form>
+      <div class="d-{{ val1 }}">
+        <button class="input-group-text" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+    <div>
+      <div class="mt-3">
+        <div class="d-flex justify-content-between">
+            <div>
+                <button class="{{val2 == 'none' ? 'd-block' : 'd-none' }}" (click)="del()">del</button>
+                <input type="checkbox" class="{{val2 == 'none' ? 'd-none' : 'd-block' }}" (change)="getVal($event)" [checked]="chkd">
+            </div>
+            <span class="mt-1 me-2">
+              {{
+                val === "block"
+                  ? allcontact.length + " " + "contact(s)"
+                  : allcontact.length == 0
+                  ? ""
+                  : allcontact.length + " " + "contact(s) found"
+              }}
+            </span>
+        </div>
+        <div class="mt-2" *ngIf="allcontact && allcontact.length != 0">
+            <div class="d-flex align-items-center" *ngFor="let item of allcontact">
+                <div class="pe-2 d-{{val2}}">
+                    <input type="checkbox" [checked]="chkd1" (change)="checkeAll($event.target, item.id)">    
+                </div>
+                <div>
+                    <a
+                    [routerLink]="['/contacts', item.id]"
+                    style="border-bottom: 1px solid #eee;"
+                    class="w-100"
+                  >
+                    <div class="d-flex align-items-center" style="margin: 0.51em">
+                      <div
+                        class="bg-light d-flex justify-content-center align-items-center"
+                        style="height: 40px; width: 50px; border-radius: 100%"
+                      >
+                        {{ item.startsWith }}
+                      </div>
+                      <div class="ms-3 w-100" >
+                        <span>{{ item.firstName }} {{item.middleName}} {{item.lastName}}</span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+            </div>
+          
+        </div>
+        <small *ngIf="allcontact && allcontact.length == 0"
+          >No result found</small
+        >
+      </div>
+    </div>
+  </div>
+  <div class="{{val2 == 'none' ? 'd-none' : 'd-block' }}" style="position: absolute;bottom: 0;z-index:11;width: 95%;">
+    <div class="d-flex justify-content-between">
+        <button class="btn" (click)="dismiss()">Dismiss</button>
+        <button class="btn me-4" (click)="delete()">Delete</button>
+    </div>
+</div>
+</div>

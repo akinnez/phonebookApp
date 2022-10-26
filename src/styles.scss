@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    font-family: "Modern Antiqua";
+}
+a{
+    color: #000;
+}
+
+::-webkit-scrollbar{
+  width: 4px !important;
+}
+::-webkit-scrollbar-thumb{
+    display: none !important;
+}
+::-webkit-scrollbar-thumb:hover{
+    display: block !important;
+    background: #aaa;
+    border-radius: 20px;
+}
